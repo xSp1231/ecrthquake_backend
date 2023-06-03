@@ -17,6 +17,7 @@ class Province_eqnum(models.Model):
     class Meta:
         db_table = "province_eqnum_year"  # 修改数据表的名字
 
+#添加模型类
 class Province_intro(models.Model):
     province = models.CharField(max_length=10, verbose_name='省份')
     deathnum=models.IntegerField(verbose_name='受伤人数')
