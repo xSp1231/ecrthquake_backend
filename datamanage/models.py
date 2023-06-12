@@ -22,7 +22,7 @@ class Province_intro(models.Model):
     province = models.CharField(max_length=10, verbose_name='省份')
     deathnum=models.IntegerField(verbose_name='受伤人数')
     injurenum=models.IntegerField(verbose_name='死亡人数')
-    total=models.IntegerField(verbose_name='伤亡人数')
+    total=models.IntegerField(verbose_name='伤亡人数',null=True)
     intro=models.CharField(max_length=100,verbose_name='省份地理简介')
     pie_json=models.CharField(max_length=600,verbose_name='饼图数据')
     class Meta:
