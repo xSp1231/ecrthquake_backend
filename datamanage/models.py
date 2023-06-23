@@ -14,17 +14,31 @@ class Province_eqnum(models.Model):
     num2020 = models.IntegerField(verbose_name='2020')
     num2021 = models.IntegerField(verbose_name='2021')
     num2022 = models.IntegerField(verbose_name='2022')
+
     class Meta:
         db_table = "province_eqnum_year"  # 修改数据表的名字
 
-#添加模型类
+
+# 添加模型类
 class Province_intro(models.Model):
     province = models.CharField(max_length=10, verbose_name='省份')
-    deathnum=models.IntegerField(verbose_name='受伤人数')
-    injurenum=models.IntegerField(verbose_name='死亡人数')
-    total=models.IntegerField(verbose_name='伤亡人数',null=True)
-    intro=models.CharField(max_length=100,verbose_name='省份地理简介')
-    pie_json=models.CharField(max_length=600,verbose_name='饼图数据')
+    deathnum = models.IntegerField(verbose_name='受伤人数')
+    injurenum = models.IntegerField(verbose_name='死亡人数')
+    total = models.IntegerField(verbose_name='伤亡人数', null=True)
+    intro = models.CharField(max_length=100, verbose_name='省份地理简介')
+    pie_json = models.CharField(max_length=600, verbose_name='饼图数据')
+    image = models.ImageField(upload_to='pictures/', default='pictures/default.jpg')
+
     class Meta:
         db_table = "province_intro"  # 修改数据表的名字
 
+
+class Provine_magnitude(models.Model):
+    province = models.CharField(max_length=10, verbose_name='省份')
+    minn = models.FloatField()
+    averge = models.FloatField()
+    maxx = models.FloatField()
+    f = models.FloatField(default=0) #强震频率
+
+    class Meta:
+        db_table = "province_magnitude"  # 修改数据表的名字
