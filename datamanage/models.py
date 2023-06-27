@@ -42,3 +42,11 @@ class Provine_magnitude(models.Model):
 
     class Meta:
         db_table = "province_magnitude"  # 修改数据表的名字
+
+class cluserData(models.Model):
+    deepth = models.FloatField()
+    grade = models.FloatField()
+    cluster =models.IntegerField()
+
+    class Meta:
+        db_table = "clusterData"  # 修改数据表的名字

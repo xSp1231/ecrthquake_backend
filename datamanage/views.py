@@ -1,9 +1,10 @@
 import http
 import json
 from django.http import JsonResponse
-from datamanage.models import Province_eqnum, Province_intro, Provine_magnitude
+from datamanage.models import Province_eqnum, Province_intro, Provine_magnitude, cluserData
 
-#发送词云图对应的折线图的数据
+
+# 发送词云图对应的折线图的数据
 def getprovincedata(request):
     name = request.GET.get('province')
     print("省份为 ", name)
@@ -13,7 +14,8 @@ def getprovincedata(request):
     print("ydata is ", ydata)
     return JsonResponse({"ydata": ydata})
 
-#发送各个省份地震情况简介
+
+# 发送各个省份地震情况简介
 def getprovinceintro(request):
     area = request.GET.get('area')
     data = Province_intro.objects.get(province=area)
@@ -26,7 +28,7 @@ def getprovinceintro(request):
     return JsonResponse({"areadata": dic})
 
 
-#发送各省份震级数据
+# 发送各省份震级数据
 def getmagnitudedata(request):
     data = Provine_magnitude.objects.all()
     x = []
@@ -39,3 +41,11 @@ def getmagnitudedata(request):
         averge.append(it.averge)
         maxx.append(it.maxx)
     return JsonResponse([x, minn, averge, maxx], safe=False)
+
+def getclusterdata(request):
+    data =cluserData.objects.all()
+    res=[]
+    for i in data:
+      temp=[i.deepth,i.grade,i.cluster]
+      res.append(temp)
+    return JsonResponse({"data":res},safe=True)
