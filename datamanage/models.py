@@ -50,3 +50,13 @@ class cluserData(models.Model):
 
     class Meta:
         db_table = "clusterData"  # 修改数据表的名字
+
+
+#搜索选项里面的地区数据
+class searchAreaData(models.Model):
+    position = models.CharField(max_length=20)  #地点
+    date = models.DateField()  # 时间
+    magnitude = models.FloatField()  # 震级
+    tag = models.CharField(max_length=20) # 标签
+    class Meta:
+        db_table = "searchAreaData" # 修改数据表的名字
