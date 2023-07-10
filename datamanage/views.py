@@ -1,7 +1,8 @@
 import http
 import json
 from django.http import JsonResponse
-from datamanage.models import Province_eqnum, Province_intro, Provine_magnitude, cluserData, searchAreaData
+from datamanage.models import Province_eqnum, Province_intro, Provine_magnitude, cluserData, searchAreaData, \
+    predictionData
 
 
 # 发送词云图对应的折线图的数据
@@ -55,8 +56,18 @@ def getclusterdata(request):
 def getSearchAreaTableData(request):  # get请求
     name = request.GET.get("areaname")
     data = searchAreaData.objects.filter(position__icontains=name)  # 对name 进行模糊查询  name 为子序列
-    res=[]
+    res = []
     for it in data:
-        temp={"position":it.position,"time":it.date,"magnitude":it.magnitude,"tag":it.tag}
+        temp = {"position": it.position, "time": it.date, "magnitude": it.magnitude, "tag": it.tag}
         res.append(temp)
     return JsonResponse({"areaTableData": res}, safe=True)
+
+
+def getPredictionData(request):  # get请求
+    name = request.GET.get("areaname")
+    data = predictionData.objects.filter(position__icontains=name)  # 对name 进行模糊查询  name 为子序列
+    res = []
+    for it in data:
+        temp = [it.date, it.magnitude]
+        res.append(temp)
+    return JsonResponse({"predictionData": res}, safe=True)
