@@ -9,5 +9,7 @@ urlpatterns = [
     path('getclusterdata/',views.getclusterdata),
     path('getSearchAreaTableData/',views.getSearchAreaTableData),
     path('getPredictionData/',views.getPredictionData),
+    path('getDoubleBarData/',views.getDoubleBarData),
+    path('getPieData/',views.getPidData),
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -38,33 +38,60 @@ class Provine_magnitude(models.Model):
     minn = models.FloatField()
     averge = models.FloatField()
     maxx = models.FloatField()
-    f = models.FloatField(default=0) #强震频率
+    f = models.FloatField(default=0)  # 强震频率
 
     class Meta:
         db_table = "province_magnitude"  # 修改数据表的名字
 
+
 class cluserData(models.Model):
     deepth = models.FloatField()
     grade = models.FloatField()
-    cluster =models.IntegerField()
+    cluster = models.IntegerField()
 
     class Meta:
         db_table = "clusterData"  # 修改数据表的名字
 
 
-#搜索选项里面的地区数据
+# 搜索选项里面的地区数据
 class searchAreaData(models.Model):
-    position = models.CharField(max_length=20)  #地点
+    position = models.CharField(max_length=20)  # 地点
     date = models.DateField()  # 时间
     magnitude = models.FloatField()  # 震级
-    tag = models.CharField(max_length=20) # 标签
+    tag = models.CharField(max_length=20)  # 标签
+
     class Meta:
-        db_table = "searchAreaData" # 修改数据表的名字
+        db_table = "searchAreaData"  # 修改数据表的名字
 
 
 class predictionData(models.Model):
-    position = models.CharField(max_length=20)  #地点
+    position = models.CharField(max_length=20)  # 地点
     date = models.DateField()  # 时间
     magnitude = models.FloatField()  # 震级
+
     class Meta:
-        db_table = "predictionData" # 修改数据表的名字
+        db_table = "predictionData"  # 修改数据表的名字
+
+
+class doubleBarMagnitude(models.Model):
+    position = models.CharField(max_length=20)  # 地点
+    sMagnitude = models.FloatField()  # 弱震级
+    mMagnitude = models.FloatField()  # 中震级
+    lMagnitude = models.FloatField()  # 强震级
+    sDepth = models.FloatField()  # 弱震深
+    mDepth = models.FloatField()  # 中震深
+    lDepth = models.FloatField()  # 强震深
+
+    class Meta:
+        db_table = "doubleBarData"  # 修改数据表的名字
+
+
+class pieData(models.Model): #与双轴柱状图关联的饼图的数据
+    position = models.CharField(max_length=20)  # 地点
+    depth = models.FloatField()  # 震深
+    magnitude = models.FloatField()  # 震级
+    magnitudeTag=models.CharField(max_length=10) # 震级标签
+    depthTag=models.CharField(max_length=10) # 震源标签
+
+    class Meta:
+        db_table = "pieData"  # 修改数据表的名字
